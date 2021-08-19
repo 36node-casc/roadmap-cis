@@ -1,0 +1,18 @@
+---
+- name: Namespace for adventurer
+  community.kubernetes.k8s:
+    state: "{{ casc_cis_state }}"
+    name: "{{ casc_cis_namespace }}"
+    api_version: v1
+    kind: Namespace
+
+- name: adventurer service
+  community.kubernetes.k8s:
+    state: "{{ casc_cis_state }}"
+    namespace: "{{ casc_cis_namespace }}"
+    template: "{{ item }}"
+  with_items:
+    - admin.yml.j2
+    - ingress.yml.j2
+  tags:
+    - casc-cis

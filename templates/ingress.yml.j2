@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: casc-cis-ingress
+  annotations:
+    kubernetes.io/ingress.class: "{{ ingress_class }}"
+    cert-manager.io/cluster-issuer: "{{ cert_issuer }}"
+spec:
+  rules:
+    - host: "{{ admin_subdomain }}.{{ domain }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: admin
+                port:
+                  number: 80
+  tls:
+    - secretName: "{{ domain }}"
+      hosts:
+        - "*.{{ domain }}"

@@ -1,0 +1,18 @@
+---
+namespace: casc-cis-uat
+state: present
+image_pull_policy: Always
+ingress_class: traefik
+
+casc_cis_state: "{{ state }}"
+casc_cis_namespace: "{{ namespace }}"
+stargate_namespace: casc_uat
+domain: casc-cis-uat.36node.com
+mongodb_connection: mongodb://root:it_is_a_secret@mongodb
+
+auth_endpoint: https://api.stargate.36node.com/auth/v1
+
+admin_subdomain: admin
+admin_image: registry.cn-beijing.aliyuncs.com/36node/casc-cis-admin:main
+admin_github_provider: 611dde95c32df10012f9f179
+admin_login_url: https://github.com/login/oauth/authorize?client_id=ab0851fda28ab019d2a8&scope=repo admin:org&redirect_uri=http://{{ admin_subdomain }}.{{ domain }}/login
