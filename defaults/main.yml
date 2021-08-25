@@ -12,7 +12,7 @@ mongodb_connection: mongodb://root:it_is_a_secret@mongodb
 
 auth_endpoint: https://api.stargate.36node.com/auth/v1
 
+admin_time: 19970721
 admin_subdomain: admin
 admin_image: registry.cn-beijing.aliyuncs.com/36node/casc-cis-admin:main
-admin_github_provider: 611dde95c32df10012f9f179
-admin_login_url: https://github.com/login/oauth/authorize?client_id=ab0851fda28ab019d2a8&scope=repo admin:org&redirect_uri=http://{{ admin_subdomain }}.{{ domain }}/login
+admin_provider: 6124956ac32df10012fa0b40
