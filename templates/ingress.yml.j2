@@ -18,6 +18,16 @@ spec:
                 name: admin
                 port:
                   number: 80
+    - host: "{{ fill_subdomain }}.{{ domain }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: fill
+                port:
+                  number: 80
   tls:
     - secretName: "{{ domain }}"
       hosts:

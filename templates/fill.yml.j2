@@ -1,0 +1,66 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fill
+  labels:
+    app: fill
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: fill
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fill
+  labels:
+    app: fill
+spec:
+  selector:
+    matchLabels:
+      app: fill
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: fill
+        name: fill
+        vector.dev/enable: "{{ fill_vector_enabled }}"
+        {% if fill_vector_topic %}
+        vector.dev/topic: "{{ fill_vector_topic }}"
+        {% endif %}
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: fill
+          image: "{{ fill_image }}"
+          imagePullPolicy: "{{ image_pull_policy }}"
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ fill_time }}"
+            - name: PORT
+              value: "{{ fill_port }}"
+            - name: MONGODB_CONNECTION
+              value: "{{ fill_mongo_connection }}"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"

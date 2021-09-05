@@ -13,6 +13,7 @@
     template: "{{ item }}"
   with_items:
     - admin.yml.j2
+    - fill.yml.j2
     - ingress.yml.j2
   tags:
     - casc-cis

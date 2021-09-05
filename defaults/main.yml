@@ -16,3 +16,12 @@ admin_time: 19970721
 admin_subdomain: admin
 admin_image: registry.cn-beijing.aliyuncs.com/36node/casc-cis-admin:main
 admin_provider: 6124956ac32df10012fa0b40
+
+fill_time: 202109050846
+fill_version: main
+fill_subdomain: fill
+fill_image: "registry.cn-beijing.aliyuncs.com/36node/casc-cis-fill:{{ fill_version }}"
+fill_port: "80"
+fill_mongo_connection: "{{ mongodb_connection }}/fill?authSource=admin"
+fill_vector_enabled: "true"
+fill_vector_topic: false
