@@ -14,6 +14,7 @@ auth_endpoint: https://api.stargate.36node.com/auth/v1
 
 admin_time: 19970721
 admin_subdomain: admin
+admin_echo: "true"
 admin_image: registry.cn-beijing.aliyuncs.com/36node/casc-cis-admin:main
 admin_provider: 6124956ac32df10012fa0b40
 

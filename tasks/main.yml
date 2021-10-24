@@ -1,12 +1,12 @@
 ---
-- name: Namespace for adventurer
+- name: Namespace for casc-cis
   community.kubernetes.k8s:
     state: "{{ casc_cis_state }}"
     name: "{{ casc_cis_namespace }}"
     api_version: v1
     kind: Namespace
 
-- name: adventurer service
+- name: casc-cis k8s templates
   community.kubernetes.k8s:
     state: "{{ casc_cis_state }}"
     namespace: "{{ casc_cis_namespace }}"

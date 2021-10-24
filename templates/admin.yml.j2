@@ -45,8 +45,12 @@ spec:
           env:
             - name: DEPLOY_TIME
               value: "{{ admin_time }}"
+            - name: REACT_APP_ECHO
+              value: "{{ admin_echo }}"
             - name: REACT_APP_AUTH_ENDPOINT
               value: "{{ auth_endpoint }}"
+            - name: REACT_APP_FILL_ENDPOINT
+              value: "{{ fill_endpoint }}"
             - name: REACT_APP_PROVIDER
               value: "{{ admin_provider }}"
           ports:
