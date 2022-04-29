@@ -1,3 +1,4 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -5,7 +6,9 @@ metadata:
   name: casc-cis-ingress
   annotations:
     kubernetes.io/ingress.class: "{{ ingress_class }}"
+    {% if tls_enabled %}
     cert-manager.io/cluster-issuer: "{{ cert_issuer }}"
+    {% endif %}
 spec:
   rules:
     - host: "{{ admin_subdomain }}.{{ domain }}"
@@ -28,7 +31,9 @@ spec:
                 name: fill
                 port:
                   number: 80
+  {% if tls_enabled %}
   tls:
     - secretName: "{{ domain }}"
       hosts:
         - "*.{{ domain }}"
+  {% endif %}

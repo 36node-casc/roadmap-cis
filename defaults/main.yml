@@ -2,6 +2,7 @@
 namespace: casc-cis-uat
 state: present
 image_pull_policy: Always
+tls_enabled: true
 ingress_class: traefik
 
 casc_cis_state: "{{ state }}"
@@ -11,11 +12,13 @@ domain: casc-cis-uat.36node.com
 mongodb_connection: mongodb://root:it_is_a_secret@mongodb
 
 auth_endpoint: https://api.stargate.36node.com/auth/v1
+fill_endpoint: "https://{{ fill_subdomain }}.{{ domain }}/v0"
 
 admin_time: 19970721
+admin_version: main
 admin_subdomain: admin
 admin_echo: "true"
-admin_image: registry.cn-beijing.aliyuncs.com/36node/casc-cis-admin:main
+admin_image: registry.cn-beijing.aliyuncs.com/36node/casc-cis-admin:{{ admin_version }}
 admin_provider: 6124956ac32df10012fa0b40
 
 fill_time: 202109050846
